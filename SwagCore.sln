@@ -5,6 +5,14 @@ VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwagCore", "SwagCore\SwagCore.csproj", "{300831D6-7E94-4273-A67F-4D1E1B165C6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwagCore.Irc", "SwagCore.Irc\SwagCore.Irc.csproj", "{44037624-B4BA-42DF-BB3D-394310B94D7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwagCore.Ai", "SwagCore.Ai\SwagCore.Ai.csproj", "{904AD6E5-44BB-4A44-B0DB-550EC971FEDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiAiSDK", "dialogflow-dotnet-client\ApiAiSDK\ApiAiSDK.csproj", "{162D1664-491D-41A3-B4E7-332EAAF87CCA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{49522C0F-1AC9-4FB0-9C60-FD432F261559}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +23,24 @@ Global
 		{300831D6-7E94-4273-A67F-4D1E1B165C6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{300831D6-7E94-4273-A67F-4D1E1B165C6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{300831D6-7E94-4273-A67F-4D1E1B165C6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44037624-B4BA-42DF-BB3D-394310B94D7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44037624-B4BA-42DF-BB3D-394310B94D7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44037624-B4BA-42DF-BB3D-394310B94D7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44037624-B4BA-42DF-BB3D-394310B94D7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{904AD6E5-44BB-4A44-B0DB-550EC971FEDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{904AD6E5-44BB-4A44-B0DB-550EC971FEDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{904AD6E5-44BB-4A44-B0DB-550EC971FEDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{904AD6E5-44BB-4A44-B0DB-550EC971FEDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{162D1664-491D-41A3-B4E7-332EAAF87CCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{162D1664-491D-41A3-B4E7-332EAAF87CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{162D1664-491D-41A3-B4E7-332EAAF87CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{162D1664-491D-41A3-B4E7-332EAAF87CCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{162D1664-491D-41A3-B4E7-332EAAF87CCA} = {49522C0F-1AC9-4FB0-9C60-FD432F261559}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9F0855B0-DF97-4C04-9E17-1CAE45F404A0}
