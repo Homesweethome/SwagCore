@@ -31,7 +31,7 @@ namespace SwagCore
                 UserName = Configuration["Irc:UserName"]
             });
             SwagContainer.Resolve<IIrcBot>().NewMessageRecieved += Program_NewMessageRecieved;
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(5000);
             SwagContainer.Resolve<IIrcBot>().JoinChannel("#test");
 
             Console.ReadKey();

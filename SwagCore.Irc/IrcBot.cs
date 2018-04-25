@@ -53,52 +53,8 @@ namespace SwagCore.Irc
         {
             var client = (IrcClient)sender;
 
-            client.LocalUser.NoticeReceived += IrcClientLocalUserNoticeReceived;
-            client.LocalUser.MessageReceived += IrcClientLocalUserMessageReceived;
-            client.LocalUser.JoinedChannel += IrcClientLocalUserJoinedChannel;
-            client.LocalUser.LeftChannel += IrcClientLocalUserLeftChannel;
             OnClientRegistered(client);
         }
-
-        private void IrcClientLocalUserLeftChannel(object sender, IrcChannelEventArgs e)
-        {
-            var localUser = (IrcLocalUser)sender;
-            e.Channel.UserJoined -= IrcClientChannelUserJoined;
-            e.Channel.UserLeft -= IrcClientChannelUserLeft;
-            e.Channel.MessageReceived -= IrcClientChannelMessageReceived;
-            e.Channel.NoticeReceived -= IrcClientChannelNoticeReceived;
-            OnLocalUserLeftChannel(localUser, e);
-        }
-
-        private void IrcClientLocalUserJoinedChannel(object sender, IrcChannelEventArgs e)
-        {
-            var localUser = (IrcLocalUser)sender;
-            e.Channel.UserJoined += IrcClientChannelUserJoined;
-            e.Channel.UserLeft += IrcClientChannelUserLeft;
-            e.Channel.MessageReceived += IrcClientChannelMessageReceived;
-            e.Channel.NoticeReceived += IrcClientChannelNoticeReceived;
-            OnLocalUserJoinedChannel(localUser, e);
-        }
-
-        private void IrcClientLocalUserMessageReceived(object sender, IrcMessageEventArgs e)
-        {
-            var localUser = (IrcLocalUser)sender;
-            if (e.Source is IrcUser)
-            {
-                Console.WriteLine("IrcClientLocalUserMessageReceived");
-                if (ReadChatCommand(localUser, e))
-                    return;
-            }
-            OnLocalUserMessageReceived(localUser, e);
-        }
-
-        private void IrcClientLocalUserNoticeReceived(object sender, IrcMessageEventArgs e)
-        {
-            var localUser = (IrcLocalUser)sender;
-
-            OnLocalUserNoticeReceived(localUser, e);
-        }
-
 
         private void ClientOnDisconnected(object sender, EventArgs e)
         {
