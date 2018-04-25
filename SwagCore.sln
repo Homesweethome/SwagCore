@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwagCore", "SwagCore\SwagCore.csproj", "{300831D6-7E94-4273-A67F-4D1E1B165C6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwagCore", "SwagCore\SwagCore.csproj", "{300831D6-7E94-4273-A67F-4D1E1B165C6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwagCore.Irc", "SwagCore.Irc\SwagCore.Irc.csproj", "{44037624-B4BA-42DF-BB3D-394310B94D7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwagCore.Irc", "SwagCore.Irc\SwagCore.Irc.csproj", "{44037624-B4BA-42DF-BB3D-394310B94D7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwagCore.Ai", "SwagCore.Ai\SwagCore.Ai.csproj", "{904AD6E5-44BB-4A44-B0DB-550EC971FEDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwagCore.Ai", "SwagCore.Ai\SwagCore.Ai.csproj", "{904AD6E5-44BB-4A44-B0DB-550EC971FEDD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiAiSDK", "dialogflow-dotnet-client\ApiAiSDK\ApiAiSDK.csproj", "{162D1664-491D-41A3-B4E7-332EAAF87CCA}"
 EndProject
