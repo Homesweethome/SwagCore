@@ -13,6 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiAiSDK", "dialogflow-dotn
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{49522C0F-1AC9-4FB0-9C60-FD432F261559}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{F94E2789-E60D-404F-ACCE-91B29C66B454}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwagCore.Plugin.Weather", "SwagCore.Plugin.Weather\SwagCore.Plugin.Weather.csproj", "{AD8186A6-FD3D-4C65-9296-AA4E6628E6B0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwagCore.Plugin.Base", "SwagCore.Plugin.Base\SwagCore.Plugin.Base.csproj", "{3949E570-A4C2-4FE8-A105-339E50902E71}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwagCore.Ai.Test", "SwagCore.Ai.Test\SwagCore.Ai.Test.csproj", "{D6139420-8091-41E8-A326-54BBEADC0B4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,12 +43,26 @@ Global
 		{162D1664-491D-41A3-B4E7-332EAAF87CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{162D1664-491D-41A3-B4E7-332EAAF87CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{162D1664-491D-41A3-B4E7-332EAAF87CCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD8186A6-FD3D-4C65-9296-AA4E6628E6B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD8186A6-FD3D-4C65-9296-AA4E6628E6B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD8186A6-FD3D-4C65-9296-AA4E6628E6B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD8186A6-FD3D-4C65-9296-AA4E6628E6B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3949E570-A4C2-4FE8-A105-339E50902E71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3949E570-A4C2-4FE8-A105-339E50902E71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3949E570-A4C2-4FE8-A105-339E50902E71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3949E570-A4C2-4FE8-A105-339E50902E71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6139420-8091-41E8-A326-54BBEADC0B4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6139420-8091-41E8-A326-54BBEADC0B4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6139420-8091-41E8-A326-54BBEADC0B4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6139420-8091-41E8-A326-54BBEADC0B4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{162D1664-491D-41A3-B4E7-332EAAF87CCA} = {49522C0F-1AC9-4FB0-9C60-FD432F261559}
+		{AD8186A6-FD3D-4C65-9296-AA4E6628E6B0} = {F94E2789-E60D-404F-ACCE-91B29C66B454}
+		{3949E570-A4C2-4FE8-A105-339E50902E71} = {F94E2789-E60D-404F-ACCE-91B29C66B454}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9F0855B0-DF97-4C04-9E17-1CAE45F404A0}

@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using ApiAiSDK;
+using ApiAiSDK.Model;
+using SwagCore.Ai.Models;
 
 namespace SwagCore.Ai
 {
@@ -12,10 +16,16 @@ namespace SwagCore.Ai
             _ai = new ApiAi(new AIConfiguration(clientAccessToken, SupportedLanguage.Russian));
         }
 
-        public string SendMessage(string message)
-        {
-            var response =_ai.TextRequest(message);
-            return response.Result.Fulfillment.Speech;            
+        public async Task<AiResponseModel> SendMessage(string message)
+        {            
+            var response = await new TaskFactory<AIResponse>().StartNew(() => _ai.TextRequest(message));
+            var result = new AiResponseModel
+            {
+                Speech = response.Result.Fulfillment.Speech,
+                Action = response.Result.Action,
+                Parameters = response.Result.Parameters
+            };
+            return result;
         }
     }
 }

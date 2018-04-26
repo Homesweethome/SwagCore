@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SwagCore.Ai\SwagCore.Ai.csproj" />
-    <ProjectReference Include="..\SwagCore.Irc\SwagCore.Irc.csproj" />
     <ProjectReference Include="..\SwagCore.Plugin.Base\SwagCore.Plugin.Base.csproj" />
   </ItemGroup>
 

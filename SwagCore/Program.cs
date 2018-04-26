@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using IrcDotNet;
 using Microsoft.Extensions.Configuration;
 using SwagCore.Ai;
@@ -23,6 +24,7 @@ namespace SwagCore
 
             SwagContainer.Init();
             SwagContainer.Resolve<IDialogflow>().Connect(Configuration["DialogflowKey"]);
+            SwagContainer.Resolve<PluginContainer>().LoadPlugins();
             SwagContainer.Resolve<IIrcBot>().Connect(Configuration["Irc:Server"], new IrcUserRegistrationInfo()
             {
                 NickName = Configuration["Irc:UserName"],
@@ -37,17 +39,29 @@ namespace SwagCore
             Console.ReadKey();
         }
 
-        private static void Program_NewMessageRecieved(object sender, EventArgs e)
+        private static async void Program_NewMessageRecieved(object sender, EventArgs e)
         {
             var messageEvent = e as NewMessageEventArgs;
             Console.WriteLine(messageEvent.Channel.Name + " " + messageEvent.UserMessage.Message);
 
             if (messageEvent.Channel.Name == "#test")
             {
-                var result = SwagContainer.Resolve<IDialogflow>().SendMessage(messageEvent.UserMessage.Message);
+                var result = await SwagContainer.Resolve<IDialogflow>().SendMessage(messageEvent.UserMessage.Message);
+                var plugin = SwagContainer.Resolve<PluginContainer>().Plugins
+                    .SingleOrDefault(x => x.ActionName == result.Action);
+
+                string response = "";
+                if (plugin == null) //if plugin with action not found - just say something
+                {
+                    response = result.Speech;
+                }
+                else
+                {
+                    response = await plugin.GetReponse(result.Parameters);                    
+                }
 
                 SwagContainer.Resolve<IIrcBot>()
-                    .SendMessageToChannel(messageEvent.Channel, result);
+                    .SendMessageToChannel(messageEvent.Channel, response);
             }
         }
     }
