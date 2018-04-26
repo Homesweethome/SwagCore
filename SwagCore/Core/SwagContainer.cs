@@ -23,6 +23,7 @@ namespace SwagCore.Core
                 _container = new UnityContainer();
                 _container.RegisterSingleton<IIrcBot, IrcBot>();
                 _container.RegisterSingleton<IDialogflow, Dialogflow>();
+                _container.RegisterSingleton<IPluginContainer, PluginContainer>();
             }
         }
 

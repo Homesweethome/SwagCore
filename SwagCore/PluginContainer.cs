@@ -6,7 +6,7 @@ using SwagCore.Plugin.Base;
 
 namespace SwagCore
 {
-    public class PluginContainer
+    public class PluginContainer : IPluginContainer
     {
         public List<IBasePlugin> Plugins { get; private set; }
 
@@ -14,9 +14,14 @@ namespace SwagCore
         {
             Plugins = new List<IBasePlugin>();
 
-            var files = Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Plugins")).ToList().Where(x => x.Contains("SwagCore.Plugin") && x.EndsWith(".dll"));
+            var pluginsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Plugins");
+            if (!Directory.Exists(pluginsDirectory))
+                return;
+
+            var files = Directory.GetFiles(pluginsDirectory).ToList().Where(x => x.Contains("SwagCore.Plugin") && x.EndsWith(".dll"));
             foreach (var file in files)
             {
+                Console.WriteLine("Plugin: " + file);
                 var myAssembly = AssemblyLoader.LoadFromAssemblyPath(file);
                 var myType = myAssembly.GetTypes().SingleOrDefault(x => x.GetInterfaces().Any(y => y.Name == nameof(IBasePlugin)));
                 if (myType == null)
@@ -30,8 +35,13 @@ namespace SwagCore
                     var parameters = children.Select(x => new KeyValuePair<string, string>(x.Key, x.Value));
                     myInstance.Init(new Dictionary<string, string>(parameters));
                 }
-                if (!Plugins.Any(x => x.PluginName == myInstance.PluginName || x.ActionName == myInstance.ActionName))  //if plugin keywords empty - add plugin
+
+                if (!Plugins.Any(x => x.PluginName == myInstance.PluginName || x.ActionName == myInstance.ActionName)
+                ) //if plugin keywords empty - add plugin
+                {
                     Plugins.Add(myInstance);
+                    Console.WriteLine("Plugin added " + myInstance.PluginName + " - " + myInstance.ActionName);
+                }
             }
         }
     }

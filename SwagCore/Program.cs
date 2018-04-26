@@ -24,7 +24,7 @@ namespace SwagCore
 
             SwagContainer.Init();
             SwagContainer.Resolve<IDialogflow>().Connect(Configuration["DialogflowKey"]);
-            SwagContainer.Resolve<PluginContainer>().LoadPlugins();
+            SwagContainer.Resolve<IPluginContainer>().LoadPlugins();
             SwagContainer.Resolve<IIrcBot>().Connect(Configuration["Irc:Server"], new IrcUserRegistrationInfo()
             {
                 NickName = Configuration["Irc:UserName"],
@@ -33,7 +33,9 @@ namespace SwagCore
                 UserName = Configuration["Irc:UserName"]
             });
             SwagContainer.Resolve<IIrcBot>().NewMessageRecieved += Program_NewMessageRecieved;
+
             System.Threading.Thread.Sleep(5000);
+
             SwagContainer.Resolve<IIrcBot>().JoinChannel("#test");
 
             Console.ReadKey();
@@ -44,11 +46,14 @@ namespace SwagCore
             var messageEvent = e as NewMessageEventArgs;
             Console.WriteLine(messageEvent.Channel.Name + " " + messageEvent.UserMessage.Message);
 
-            if (messageEvent.Channel.Name == "#test")
+            if (messageEvent.UserMessage.Message.StartsWith("!к"))
             {
-                var result = await SwagContainer.Resolve<IDialogflow>().SendMessage(messageEvent.UserMessage.Message);
-                var plugin = SwagContainer.Resolve<PluginContainer>().Plugins
-                    .SingleOrDefault(x => x.ActionName == result.Action);
+                var trimmedMessage = messageEvent.UserMessage.Message.Remove(0, 2).Trim();
+                var result = await SwagContainer.Resolve<IDialogflow>().SendMessage(trimmedMessage);
+                Console.WriteLine(result.Action + " " + result.Speech);
+                var plugins = SwagContainer.Resolve<IPluginContainer>().Plugins;
+                Console.WriteLine("Total plugins: " + plugins.Count + " " + result.Action);
+                var plugin = plugins.SingleOrDefault(x => x.ActionName == result.Action);
 
                 string response = "";
                 if (plugin == null) //if plugin with action not found - just say something

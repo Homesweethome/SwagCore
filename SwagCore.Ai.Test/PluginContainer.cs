@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
+using SwagCore.Ai.Test;
 using SwagCore.Plugin.Base;
 
-namespace SwagCore.Ai.Test
+namespace SwagCore
 {
     public class PluginContainer
     {
@@ -14,6 +14,10 @@ namespace SwagCore.Ai.Test
         public void LoadPlugins()
         {
             Plugins = new List<IBasePlugin>();
+
+            var pluginsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Plugins");
+            if (!Directory.Exists(pluginsDirectory))
+                return;
 
             var files = Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Plugins")).ToList().Where(x => x.Contains("SwagCore.Plugin") && x.EndsWith(".dll"));
             foreach (var file in files)

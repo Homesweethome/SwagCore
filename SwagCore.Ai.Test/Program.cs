@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using SwagCore.Ai.Test.Core;
 using SwagCore.Plugin.Base;
@@ -27,12 +28,21 @@ namespace SwagCore.Ai.Test
             SwagContainer.Resolve<IDialogflow>().Connect(Configuration["DialogflowKey"]);
             SwagContainer.Resolve<PluginContainer>().LoadPlugins();
 
+            var p = new Program();
             var line = Console.ReadLine();
+            p.Do(line);
 
-            var result = SwagContainer.Resolve<IDialogflow>().SendMessage(line).Result;
+            Console.ReadKey();
+        }
 
+        private async Task Do(string line)
+        {
+            
+
+            var result = await SwagContainer.Resolve<IDialogflow>().SendMessage(line);
             var plugin = SwagContainer.Resolve<PluginContainer>().Plugins
                 .SingleOrDefault(x => x.ActionName == result.Action);
+
             if (plugin == null) //if plugin with action not found - just say something
             {
                 Console.WriteLine(result.Speech);
@@ -43,6 +53,6 @@ namespace SwagCore.Ai.Test
                 Console.WriteLine(pluginResponse);
             }
             Console.ReadKey();
-        }        
+        }
     }
 }
