@@ -10,7 +10,6 @@ namespace SwagCore.Irc
 {
     public class IrcBot: IDisposable, IIrcBot
     {
-        private string[] _chatCommandPrefixes = {"!c", "!с", "!s"};
         private const int _clientTimeout = 1000;
 
         private StandardIrcClient _ircClient;

@@ -24,6 +24,7 @@ namespace SwagCore.Core
                 _container.RegisterSingleton<IIrcBot, IrcBot>();
                 _container.RegisterSingleton<IDialogflow, Dialogflow>();
                 _container.RegisterSingleton<IPluginContainer, PluginContainer>();
+                _container.RegisterSingleton<DummyTalker>();
             }
         }
 

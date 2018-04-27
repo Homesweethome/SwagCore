@@ -12,6 +12,8 @@ namespace SwagCore
 {
     class Program
     {
+        private static readonly string[] ChatCommandPrefixes = { "!c", "!с", "!s" };
+
         public static IConfiguration Configuration { get; private set; }
 
         static void Main(string[] args)
@@ -46,13 +48,12 @@ namespace SwagCore
             var messageEvent = e as NewMessageEventArgs;
             Console.WriteLine(messageEvent.Channel.Name + " " + messageEvent.UserMessage.Message);
 
-            if (messageEvent.UserMessage.Message.StartsWith("!к"))
+            if (ChatCommandPrefixes.Any(x => messageEvent.UserMessage.Message.StartsWith(x)))
             {
                 var trimmedMessage = messageEvent.UserMessage.Message.Remove(0, 2).Trim();
                 var result = await SwagContainer.Resolve<IDialogflow>().SendMessage(trimmedMessage);
                 Console.WriteLine(result.Action + " " + result.Speech);
                 var plugins = SwagContainer.Resolve<IPluginContainer>().Plugins;
-                Console.WriteLine("Total plugins: " + plugins.Count + " " + result.Action);
                 var plugin = plugins.SingleOrDefault(x => x.ActionsName.Contains(result.Action));
 
                 string response = "";
@@ -67,6 +68,16 @@ namespace SwagCore
 
                 SwagContainer.Resolve<IIrcBot>()
                     .SendMessageToChannel(messageEvent.Channel, response);
+            }
+            else
+            {
+                var dummyTalker = SwagContainer.Resolve<DummyTalker>();
+                var response = dummyTalker.DummyTalk(messageEvent.UserMessage);
+                if (!string.IsNullOrEmpty(response))
+                {
+                    SwagContainer.Resolve<IIrcBot>()
+                        .SendMessageToChannel(messageEvent.Channel, response);
+                }
             }
         }
     }
