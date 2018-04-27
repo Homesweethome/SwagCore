@@ -53,7 +53,7 @@ namespace SwagCore
                 Console.WriteLine(result.Action + " " + result.Speech);
                 var plugins = SwagContainer.Resolve<IPluginContainer>().Plugins;
                 Console.WriteLine("Total plugins: " + plugins.Count + " " + result.Action);
-                var plugin = plugins.SingleOrDefault(x => x.ActionName == result.Action);
+                var plugin = plugins.SingleOrDefault(x => x.ActionsName.Contains(result.Action));
 
                 string response = "";
                 if (plugin == null) //if plugin with action not found - just say something
@@ -62,7 +62,7 @@ namespace SwagCore
                 }
                 else
                 {
-                    response = await plugin.GetReponse(result.Parameters);                    
+                    response = await plugin.GetReponse(result.Parameters, result.Action);                    
                 }
 
                 SwagContainer.Resolve<IIrcBot>()

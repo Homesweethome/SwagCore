@@ -36,11 +36,11 @@ namespace SwagCore
                     myInstance.Init(new Dictionary<string, string>(parameters));
                 }
 
-                if (!Plugins.Any(x => x.PluginName == myInstance.PluginName || x.ActionName == myInstance.ActionName)
+                if (!Plugins.Any(x => x.PluginName == myInstance.PluginName || x.ActionsName == myInstance.ActionsName)
                 ) //if plugin keywords empty - add plugin
                 {
                     Plugins.Add(myInstance);
-                    Console.WriteLine("Plugin added " + myInstance.PluginName + " - " + myInstance.ActionName);
+                    Console.WriteLine("Plugin added " + myInstance.PluginName + " - " + string.Join(", ", myInstance.ActionsName));
                 }
             }
         }

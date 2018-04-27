@@ -35,8 +35,13 @@ namespace SwagCore
                     var parameters = children.Select(x => new KeyValuePair<string, string>(x.Key, x.Value));
                     myInstance.Init(new Dictionary<string, string>(parameters));
                 }
-                if (!Plugins.Any(x => x.PluginName == myInstance.PluginName || x.ActionName == myInstance.ActionName))  //if plugin keywords empty - add plugin
+
+                if (!Plugins.Any(x => x.PluginName == myInstance.PluginName || x.ActionsName == myInstance.ActionsName)
+                ) //if plugin keywords empty - add plugin
+                {
                     Plugins.Add(myInstance);
+                    Console.WriteLine("Plugin added " + myInstance.PluginName + " - " + string.Join(", ", myInstance.ActionsName));
+                }
             }
         }
     }

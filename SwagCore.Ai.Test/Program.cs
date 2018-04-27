@@ -41,7 +41,7 @@ namespace SwagCore.Ai.Test
 
             var result = await SwagContainer.Resolve<IDialogflow>().SendMessage(line);
             var plugin = SwagContainer.Resolve<PluginContainer>().Plugins
-                .SingleOrDefault(x => x.ActionName == result.Action);
+                .SingleOrDefault(x => x.ActionsName.Contains(result.Action));
 
             if (plugin == null) //if plugin with action not found - just say something
             {
@@ -49,7 +49,7 @@ namespace SwagCore.Ai.Test
             }
             else
             {
-                var pluginResponse = plugin.GetReponse(result.Parameters).Result;
+                var pluginResponse = plugin.GetReponse(result.Parameters, result.Action).Result;
                 Console.WriteLine(pluginResponse);
             }
             Console.ReadKey();
