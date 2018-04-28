@@ -1,4 +1,5 @@
-﻿using Unity;
+﻿using SwagCore.Plugin.Weather;
+using Unity;
 
 namespace SwagCore.Ai.Test.Core
 {
@@ -18,6 +19,7 @@ namespace SwagCore.Ai.Test.Core
                 _container = new UnityContainer();
                 _container.RegisterSingleton<IDialogflow, Dialogflow>();
                 _container.RegisterSingleton<PluginContainer>();
+                _container.RegisterSingleton<WeatherPlugin>();
             }
         }
 

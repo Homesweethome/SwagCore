@@ -40,7 +40,10 @@ namespace SwagCore
 
             SwagContainer.Resolve<IIrcBot>().JoinChannel("#test");
 
-            Console.ReadKey();
+            while (true)
+            {
+                System.Threading.Thread.Sleep(50);
+            }
         }
 
         private static async void Program_NewMessageRecieved(object sender, EventArgs e)

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using SwagCore.Ai.Test.Core;
 using SwagCore.Plugin.Base;
+using SwagCore.Plugin.Weather;
 
 namespace SwagCore.Ai.Test
 {
@@ -27,6 +28,8 @@ namespace SwagCore.Ai.Test
             SwagContainer.Init();
             SwagContainer.Resolve<IDialogflow>().Connect(Configuration["DialogflowKey"]);
             SwagContainer.Resolve<PluginContainer>().LoadPlugins();
+
+            SwagContainer.Resolve<WeatherPlugin>().Init(new Dictionary<string, string>(){{"apiKey", Configuration["Plugins:Weather:apiKey"]}});
 
             var p = new Program();
             var line = Console.ReadLine();
@@ -49,7 +52,9 @@ namespace SwagCore.Ai.Test
             }
             else
             {
-                var pluginResponse = plugin.GetReponse(result.Parameters, result.Action).Result;
+                //var pluginResponse = plugin.GetReponse(result.Parameters, result.Action).Result;
+                var pluginResponse =
+                    SwagContainer.Resolve<WeatherPlugin>().GetReponse(result.Parameters, result.Action).Result;
                 Console.WriteLine(pluginResponse);
             }
             Console.ReadKey();

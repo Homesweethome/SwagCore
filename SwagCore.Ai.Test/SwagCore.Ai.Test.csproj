@@ -14,6 +14,8 @@
   <ItemGroup>
     <ProjectReference Include="..\SwagCore.Ai\SwagCore.Ai.csproj" />
     <ProjectReference Include="..\SwagCore.Plugin.Base\SwagCore.Plugin.Base.csproj" />
+    <ProjectReference Include="..\SwagCore.Plugin.Upload\SwagCore.Plugin.Upload.csproj" />
+    <ProjectReference Include="..\SwagCore.Plugin.Weather\SwagCore.Plugin.Weather.csproj" />
   </ItemGroup>
 
   <ItemGroup>

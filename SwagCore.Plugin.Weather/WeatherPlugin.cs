@@ -13,7 +13,7 @@ namespace SwagCore.Plugin.Weather
         public string PluginName => "Weather";
         public List<string> ActionsName => new List<string>(){"action.weather"};
 
-        private const string BaseUrl = "http://api.openweathermap.org/data/2.5/";
+        private const string BaseUrl = "https://api.openweathermap.org/data/2.5/";
         private readonly IRestService _restService;
 
         public WeatherPlugin()
@@ -64,12 +64,13 @@ namespace SwagCore.Plugin.Weather
                                                                                                             " не существует!";
                     }
                 }
+                var result = "В " + parameter + " (" + weather?.sys?.country + "): " + weather?.main?.temp + "°C, "
+                             + weather?.weather[0]?.description + ", облачность " + weather?.clouds?.all + "%"
+                             + ", скорость ветра " + weather?.wind?.speed + "м/с" + " направление " + weather?.wind?.direction
+                             + ", влажность " + weather?.main?.humidity + "%"
+                             + ", давление " + weather?.main?.pressureHuman + " мм рт ст";
 
-                return "В " + parameter + " (" + weather.sys.country + "): " + weather.main.temp + "°C, "
-                       + weather.weather[0].description + ", облачность " + weather.clouds.all + "%"
-                       + ", скорость ветра " + weather.wind.speed + "м/с" + " направление " + weather.wind.direction
-                       + ", влажность " + weather.main.humidity + "%"
-                       + ", давление " + weather.main.pressureHuman + " мм рт ст";
+                return result;
             }
             catch (Exception e)
             {
