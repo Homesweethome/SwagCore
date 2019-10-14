@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using IrcDotNet;
 
 namespace SwagCore.Irc
@@ -16,5 +17,7 @@ namespace SwagCore.Irc
 
         void JoinChannel(string channelName);
         void LeaveChannel(string channelName);
+
+        IList<IrcChannel> GetChannels();
     }
 }

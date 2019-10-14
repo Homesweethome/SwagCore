@@ -1,17 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2037
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwagCore", "SwagCore\SwagCore.csproj", "{300831D6-7E94-4273-A67F-4D1E1B165C6D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwagCore.Irc", "SwagCore.Irc\SwagCore.Irc.csproj", "{44037624-B4BA-42DF-BB3D-394310B94D7D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwagCore.Ai", "SwagCore.Ai\SwagCore.Ai.csproj", "{904AD6E5-44BB-4A44-B0DB-550EC971FEDD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiAiSDK", "dialogflow-dotnet-client\ApiAiSDK\ApiAiSDK.csproj", "{162D1664-491D-41A3-B4E7-332EAAF87CCA}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{49522C0F-1AC9-4FB0-9C60-FD432F261559}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{F94E2789-E60D-404F-ACCE-91B29C66B454}"
 EndProject
@@ -21,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwagCore.Plugin.Base", "Swa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwagCore.Ai.Test", "SwagCore.Ai.Test\SwagCore.Ai.Test.csproj", "{D6139420-8091-41E8-A326-54BBEADC0B4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwagCore.Plugin.Upload", "SwagCore.Plugin.Upload\SwagCore.Plugin.Upload.csproj", "{495D0059-BC50-4AB4-A96D-F09D20116C1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwagCore.Plugin.Upload", "SwagCore.Plugin.Upload\SwagCore.Plugin.Upload.csproj", "{495D0059-BC50-4AB4-A96D-F09D20116C1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiAiSdk", "ApiAiSdk\ApiAiSdk.csproj", "{E65949A2-820D-47B2-842C-2E259BD8631A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +39,6 @@ Global
 		{904AD6E5-44BB-4A44-B0DB-550EC971FEDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{904AD6E5-44BB-4A44-B0DB-550EC971FEDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{904AD6E5-44BB-4A44-B0DB-550EC971FEDD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{162D1664-491D-41A3-B4E7-332EAAF87CCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{162D1664-491D-41A3-B4E7-332EAAF87CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{162D1664-491D-41A3-B4E7-332EAAF87CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{162D1664-491D-41A3-B4E7-332EAAF87CCA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AD8186A6-FD3D-4C65-9296-AA4E6628E6B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AD8186A6-FD3D-4C65-9296-AA4E6628E6B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD8186A6-FD3D-4C65-9296-AA4E6628E6B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -61,12 +55,15 @@ Global
 		{495D0059-BC50-4AB4-A96D-F09D20116C1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{495D0059-BC50-4AB4-A96D-F09D20116C1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{495D0059-BC50-4AB4-A96D-F09D20116C1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E65949A2-820D-47B2-842C-2E259BD8631A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E65949A2-820D-47B2-842C-2E259BD8631A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E65949A2-820D-47B2-842C-2E259BD8631A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E65949A2-820D-47B2-842C-2E259BD8631A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{162D1664-491D-41A3-B4E7-332EAAF87CCA} = {49522C0F-1AC9-4FB0-9C60-FD432F261559}
 		{AD8186A6-FD3D-4C65-9296-AA4E6628E6B0} = {F94E2789-E60D-404F-ACCE-91B29C66B454}
 		{3949E570-A4C2-4FE8-A105-339E50902E71} = {F94E2789-E60D-404F-ACCE-91B29C66B454}
 		{495D0059-BC50-4AB4-A96D-F09D20116C1E} = {F94E2789-E60D-404F-ACCE-91B29C66B454}

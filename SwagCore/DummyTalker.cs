@@ -33,6 +33,13 @@ namespace SwagCore
                 result = "Доступные плагины: " + string.Join(", ", stringList);
             }
 
+            if (message.Message.ToLower().StartsWith("!zay") &&
+                message.UserName == Program.Configuration["Irc:BotAdmin"])
+            {
+                var say = message.Message.ToLower().Replace("!zay", "").Trim();
+                result = say;
+            }
+
             if (message.Message.ToLower().StartsWith("!join") &&
                 message.UserName == Program.Configuration["Irc:BotAdmin"])
             {

@@ -40,6 +40,17 @@ namespace SwagCore
 
             SwagContainer.Resolve<IIrcBot>().JoinChannel("#test");
 
+            System.Threading.Thread.Sleep(2000);
+
+            foreach (var ircChannel in SwagContainer.Resolve<IIrcBot>().GetChannels())
+            {
+                SwagContainer.Resolve<IIrcBot>().SendMessageToChannel(ircChannel, "!д");
+                SwagContainer.Resolve<IIrcBot>().SendMessageToChannel(ircChannel, "Прочитала " +
+                    SwagContainer.Resolve<IPluginContainer>().Plugins.Count + " плагинов");
+            }
+
+            SwagContainer.Resolve<IIrcBot>().GetChannels();
+
             while (true)
             {
                 System.Threading.Thread.Sleep(50);
@@ -48,40 +59,51 @@ namespace SwagCore
 
         private static async void Program_NewMessageRecieved(object sender, EventArgs e)
         {
-            var messageEvent = e as NewMessageEventArgs;
-            Console.WriteLine(messageEvent.Channel.Name + " " + messageEvent.UserMessage.Message);
-
-            if (ChatCommandPrefixes.Any(x => messageEvent.UserMessage.Message.StartsWith(x)))
+            try
             {
-                var trimmedMessage = messageEvent.UserMessage.Message.Remove(0, 2).Trim();
-                var result = await SwagContainer.Resolve<IDialogflow>().SendMessage(trimmedMessage);
-                Console.WriteLine(result.Action + " " + result.Speech);
-                var plugins = SwagContainer.Resolve<IPluginContainer>().Plugins;
-                var plugin = plugins.SingleOrDefault(x => x.ActionsName.Contains(result.Action));
+                var messageEvent = e as NewMessageEventArgs;
+                if (messageEvent == null || messageEvent.Channel == null || string.IsNullOrWhiteSpace(messageEvent.Channel.Name)
+                    || messageEvent.UserMessage == null || string.IsNullOrWhiteSpace(messageEvent.UserMessage.Message))
+                    return;
 
-                string response = "";
-                if (plugin == null) //if plugin with action not found - just say something
-                {
-                    response = result.Speech;
-                }
-                else
-                {
-                    response = await plugin.GetReponse(result.Parameters, result.Action);                    
-                }
+                Console.WriteLine(messageEvent.Channel.Name + " " + messageEvent.UserMessage.Message);
 
-                SwagContainer.Resolve<IIrcBot>()
-                    .SendMessageToChannel(messageEvent.Channel, response);
-            }
-            else
-            {
-                var dummyTalker = SwagContainer.Resolve<DummyTalker>();
-                var response = dummyTalker.DummyTalk(messageEvent.UserMessage);
-                if (!string.IsNullOrEmpty(response))
+                if (ChatCommandPrefixes.Any(x => messageEvent.UserMessage.Message.StartsWith(x)))
                 {
+                    var trimmedMessage = messageEvent.UserMessage.Message.Remove(0, 2).Trim();
+                    var result = await SwagContainer.Resolve<IDialogflow>().SendMessage(trimmedMessage);
+                    Console.WriteLine(result.Action + " " + result.Speech);
+                    var plugins = SwagContainer.Resolve<IPluginContainer>().Plugins;
+                    var plugin = plugins.SingleOrDefault(x => x.ActionsName.Contains(result.Action));
+
+                    string response = "";
+                    if (plugin == null) //if plugin with action not found - just say something
+                    {
+                        response = result.Speech;
+                    }
+                    else
+                    {
+                        response = await plugin.GetReponse(result.Parameters, result.Action);
+                    }
+
                     SwagContainer.Resolve<IIrcBot>()
                         .SendMessageToChannel(messageEvent.Channel, response);
                 }
+                else
+                {
+                    var dummyTalker = SwagContainer.Resolve<DummyTalker>();
+                    var response = dummyTalker.DummyTalk(messageEvent.UserMessage);
+                    if (!string.IsNullOrEmpty(response))
+                    {
+                        SwagContainer.Resolve<IIrcBot>()
+                            .SendMessageToChannel(messageEvent.Channel, response);
+                    }
+                }
             }
+            catch (Exception)
+            {
+                Console.WriteLine("Exception");
+            }            
         }
     }
 }

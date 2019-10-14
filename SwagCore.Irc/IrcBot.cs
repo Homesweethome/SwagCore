@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using IrcDotNet;
@@ -205,6 +206,11 @@ namespace SwagCore.Irc
         public void LeaveChannel(string channelName)
         {
             _ircClient.Channels.Leave(channelName);
+        }
+
+        public IList<IrcChannel> GetChannels()
+        {
+            return _ircClient.Channels.ToList();
         }
         #endregion
     }
